@@ -1,0 +1,31 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "my website",
+  "main": "www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmrnwlsh/mywebsite.git"
+  },
+  "keywords": [
+    "website",
+    "portfolio"
+  ],
+  "author": "Cameron Walsh",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/cmrnwlsh/mywebsite/issues"
+  },
+  "homepage": "https://github.com/cmrnwlsh/mywebsite#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
