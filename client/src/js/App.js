@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootswatch/dist/darkly/bootstrap.min.css";
-import logo from './logo.svg';
-import './App.css';
+import logo from '../resource/logo.svg';
+import '../css/App.css';
 import Button from "react-bootstrap/Button";
 
 function App() {

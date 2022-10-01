@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const app = require('./app.js');
+const app = require('./server.js');
 const debug = require('debug')('test:server');
 const http = require('http');
 
