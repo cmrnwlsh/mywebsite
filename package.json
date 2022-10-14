@@ -24,8 +24,10 @@
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
     "express": "^4.18.1",
+    "finnhub": "^1.2.16",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
+    "request": "^2.88.2",
     "serve-favicon": "^2.5.0"
   }
 }

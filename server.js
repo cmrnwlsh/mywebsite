@@ -6,7 +6,7 @@ const favicon = require('serve-favicon')
 
 const server = express();
 
-server.use(logger('dev'));
+server.use(logger(':date[iso] :remote-addr :method :url :status :res[content-length] - :response-time ms'));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(cookieParser());
