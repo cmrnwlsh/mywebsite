@@ -1,6 +1,3 @@
-(async function () {
-    for (let i = 0; i < 60; i++) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(i)
-    }
-})().then(_ => console.log("1 minute elapsed"));
+fetch('https://data.sec.gov/api/xbrl/companyfacts/CIK0000712034.json')
+    .then((response) => response.json())
+    .then((data) => console.log(data['facts']['us-gaap']));

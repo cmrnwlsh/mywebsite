@@ -1,41 +1,38 @@
-import Table from 'react-bootstrap/Table';
+import {Table, Thead, Tbody, Tr, Th, Td} from 'react-super-responsive-table'
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
+import '../css/Stonks.css'
 import MainNav from "./MainNav";
 
-function Stonks() {
+export default function Stonks() {
     return (
         <>
             <MainNav/>
-            <Table striped bordered hover className="Stonks">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td colSpan={2}>Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
+            <Table className="Stonks">
+                <Thead>
+                    <Tr>
+                        <Th>Event</Th>
+                        <Th>Date</Th>
+                        <Th>Location</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    <Tr>
+                        <Td>Tablescon</Td>
+                        <Td>9 April 2019</Td>
+                        <Td>East Annex</Td>
+                    </Tr>
+                    <Tr>
+                        <Td>Capstone Data</Td>
+                        <Td>19 May 2019</Td>
+                        <Td>205 Gorgas</Td>
+                    </Tr>
+                    <Tr>
+                        <Td>Tuscaloosa D3</Td>
+                        <Td>29 June 2019</Td>
+                        <Td>Github</Td>
+                    </Tr>
+                </Tbody>
             </Table>
         </>
     );
 }
-
-export default Stonks;

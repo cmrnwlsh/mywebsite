@@ -1,0 +1,13 @@
+.Stonks {
+    align-self: center;
+    width: 95%;
+    margin:20px;
+}
+
+Table, Tr, Td {
+    border: 1px solid #adb5bd;
+}
+
+Td, Th {
+    padding-left: 10px;
+}

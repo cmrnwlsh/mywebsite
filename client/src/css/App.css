@@ -20,11 +20,6 @@
   color: white;
 }
 
-.Stonks {
-  align-self: center;
-  width: 97%;
-  margin: 20px;
-}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
