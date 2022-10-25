@@ -7,11 +7,16 @@ const favicon = require('serve-favicon')
 
 const server = express();
 
-server.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] !== 'https')
-        return res.redirect('https://' + req.headers.host + req.url);
-    else
+server.use(function (req, res, next) {
+    if (req.secure)
         return next();
+
+    const target = new URL();
+    target.protocol = 'https';
+    target.hostname = req.headers.host;
+    target.pathname = req.url;
+
+    res.redirect(target.toString());
 });
 server.use(helmet());
 server.use(logger(':date[iso] :remote-addr'));
