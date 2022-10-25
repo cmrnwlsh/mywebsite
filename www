@@ -9,33 +9,30 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs');
 
-/**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || '443');
-app.set('port', port);
+const port = normalizePort('80');
+const portSecure = normalizePort('443')
 
 /**
  * Create HTTPS or development server.
  */
-let server;
-if (port === '443') {
-    server = https.createServer({
+const httpsServer = https.createServer({
         key: fs.readFileSync('/etc/letsencrypt/live/cmrnw.com/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/cmrnw.com/fullchain.pem')
     }, app);
-}
-else {
-    server = http.createServer(app);
-}
+
+const httpServer = http.createServer(app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
  */
+httpsServer.on('error', onError);
+httpsServer.on('listening on port ' + port, onListening);
+httpsServer.listen(portSecure);
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening on port ' + port, onListening);
+httpServer.on('error', onError);
+httpServer.on('listening on port ' + port, onListening);
+httpServer.listen(port);
 
 /**
  * Normalize a port into a number, string, or false.

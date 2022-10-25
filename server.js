@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const path = require('path');
@@ -6,6 +7,7 @@ const favicon = require('serve-favicon')
 
 const server = express();
 
+server.use(helmet);
 server.use(logger(':date[iso] :remote-addr'));
 server.use(logger('dev'));
 server.use(express.json());
