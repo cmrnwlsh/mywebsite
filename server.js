@@ -11,12 +11,7 @@ server.use(function (req, res, next) {
     if (req.secure)
         return next();
 
-    const target = new URL();
-    target.protocol = 'https';
-    target.hostname = req.headers.host;
-    target.pathname = req.url;
-
-    res.redirect(target.toString());
+    res.redirect('https://' + req.headers.host + req.url);
 });
 server.use(helmet());
 server.use(logger(':date[iso] :remote-addr'));
