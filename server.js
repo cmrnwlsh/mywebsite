@@ -7,7 +7,7 @@ const favicon = require('serve-favicon')
 
 const server = express();
 
-server.use(helmet);
+server.use(helmet());
 server.use(logger(':date[iso] :remote-addr'));
 server.use(logger('dev'));
 server.use(express.json());

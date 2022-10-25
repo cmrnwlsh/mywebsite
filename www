@@ -27,7 +27,7 @@ const httpServer = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 httpsServer.on('error', onError);
-httpsServer.on('listening on port ' + port, onListening);
+httpsServer.on('listening on port ' + portSecure, onListening);
 httpsServer.listen(portSecure);
 
 httpServer.on('error', onError);
