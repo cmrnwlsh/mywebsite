@@ -1,34 +1,26 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
 const app = require('./server.js');
 const debug = require('debug')('test:server');
 const https = require('https');
 const http = require('http');
 const fs = require('fs');
 
-const port = normalizePort('80');
+const port = normalizePort(process.env.PORT || '80');
 const portSecure = normalizePort('443')
 
-/**
- * Create HTTPS or development server.
- */
-const httpsServer = https.createServer({
+if(process.env.NODE_ENV !== 'dev') {
+    const httpsServer = https.createServer({
         key: fs.readFileSync('/etc/letsencrypt/live/cmrnw.com/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/cmrnw.com/fullchain.pem')
     }, app);
 
+    httpsServer.on('error', onError);
+    httpsServer.on('listening on port ' + portSecure, onListening);
+    httpsServer.listen(portSecure);
+}
+
 const httpServer = http.createServer(app);
-
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-httpsServer.on('error', onError);
-httpsServer.on('listening on port ' + portSecure, onListening);
-httpsServer.listen(portSecure);
 
 httpServer.on('error', onError);
 httpServer.on('listening on port ' + port, onListening);
