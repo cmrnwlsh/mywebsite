@@ -17,19 +17,10 @@ function MainNav() {
                         <LinkContainer to="/">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <Nav.Link>Test</Nav.Link>
                         <NavDropdown title="Data" id="basic-nav-dropdown">
                             <LinkContainer to="/stonks">
                                 <NavDropdown.Item>Stonks</NavDropdown.Item>
                             </LinkContainer>
-                            <NavDropdown.Item>
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item>
-                                Separated link
-                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
