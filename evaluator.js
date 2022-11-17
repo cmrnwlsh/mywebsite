@@ -1,4 +1,4 @@
-module.exports = async () => {
+(async () => {
     const nyse_cik = require('readline').createInterface({
         input: require('fs').createReadStream('./resource/nyse_cik.txt')
     });
@@ -21,34 +21,38 @@ module.exports = async () => {
         ciks.push(cik);
     });
 
-    await ticker_edgar.on('close', () => {
+    ticker_edgar.on('close', () => {
     });
 
-    await nyse_cik.on('close', () => {
-        ciks.forEach((cik, i) =>
-            setTimeout(() =>
-                fetch('https://data.sec.gov/api/xbrl/companyfacts/' + cik + '.json')
-                    .then((response) => response.json())
-                    .then((data) => {
-                        data['facts']['us-gaap']['EarningsPerShareBasic']['units']['USD/shares']
-                            .forEach(element => {
-                                if (element['form'] === '10-K' &&
-                                    element['frame'] &&
-                                    !element['frame'].includes('Q') &&
-                                    parseInt(element['frame'].slice(2, 6)) >= 2021) {
-                                    output.push({
-                                        cik: cik,
-                                        ticker: tickers[cik],
-                                        year: element['frame'].slice(2, 6),
-                                        eps: element['val']
-                                    });
-                                    console.log(i + ': logging ' + cik);
-                                }
+    await new Promise(resolve => nyse_cik.on('close', resolve))
+
+    await Promise.allSettled(ciks.map((cik, i) => new Promise(async resolve => {
+        await new Promise(resolve => setTimeout(resolve, i * 101));
+        fetch('https://data.sec.gov/api/xbrl/companyfacts/' + cik + '.json')
+            .then(response => {resolve(); return response.json()})
+            .then(data => {
+                data['facts']['us-gaap']['EarningsPerShareBasic']['units']['USD/shares']
+                    .forEach(element => {
+                        if (element['form'] === '10-K' &&
+                            element['frame'] &&
+                            !element['frame'].includes('Q') &&
+                            parseInt(element['frame'].slice(2, 6)) >= 2021) {
+                            output.push({
+                                cik: cik,
+                                ticker: tickers[cik],
+                                year: element['frame'].slice(2, 6),
+                                eps: element['val']
                             });
-                    }).catch(() => {
-                }), i * 101));
+                        }
+                    });
+                console.log(i + ': logging ' + cik);
+            }).catch(() => console.log(i + ': ' + cik + ' not found'))
+    })));
 
-        output = output.sort((a, b) => b['eps'] - a['eps']);
-        output = output.slice(0, 30);
-    });
-}
+    output = output.sort((a, b) => b['eps'] - a['eps']);
+    output = output.slice(0, 30);
+
+    require('fs').writeFile('./resource/earnings.json', JSON.stringify(output, null, 4),
+        e => console.log(e))
+
+})();
