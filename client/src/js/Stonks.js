@@ -10,22 +10,24 @@ export default function Stonks() {
 
     useEffect(() => {
         (async () => {
-            await fetch('http://192.168.0.136:3000/resource/earnings.json')
+            await fetch('https://cmrnw.com/resource/pe.json')
                 .then(r => r.json())
                 .then(data => {
-                    setArray(data.sort((a, b) => b['eps'] - a['eps']));
+                    setArray(data.sort((a, b) => a['pe'] - b['pe']));
                 })
         })();
     }, []);
 
     function renderTableData() {
         return array.map((cik) => {
-            const {id, ticker, year, eps} = cik
+            const {id, ticker, year, eps, price, pe} = cik
             return (
                 <Tr key={{id}}>
-                    <Td>{ticker}</Td>
+                    <Td><a href={'https://www.cnbc.com/quotes/' + ticker}>{ticker}</a></Td>
                     <Td>{year}</Td>
                     <Td>{eps}</Td>
+                    <td>{price}</td>
+                    <td>{pe.toFixed(2)}</td>
                 </Tr>
             )
         })
@@ -40,6 +42,8 @@ export default function Stonks() {
                         <Th>Ticker</Th>
                         <Th>Fiscal Year</Th>
                         <Th>Earnings Per Share</Th>
+                        <Th>Price</Th>
+                        <Th>Price / Earnings Ratio</Th>
                     </Tr>
                 </Thead>
                 <Tbody>

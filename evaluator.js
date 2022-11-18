@@ -1,4 +1,5 @@
-(async () => {
+// queries the SEC api for annual reports and writes the companies with the highest EPS to resource/earnings.json
+async function edgar() {
     const nyse_cik = require('readline').createInterface({
         input: require('fs').createReadStream('./resource/nyse_cik.txt')
     });
@@ -29,7 +30,7 @@
     await Promise.allSettled(ciks.map((cik, i) => new Promise(async resolve => {
         await new Promise(resolve => setTimeout(resolve, i * 101));
         fetch('https://data.sec.gov/api/xbrl/companyfacts/' + cik + '.json')
-            .then(response => {resolve(); return response.json()})
+            .then(response => response.json())
             .then(data => {
                 data['facts']['us-gaap']['EarningsPerShareBasic']['units']['USD/shares']
                     .forEach(element => {
@@ -46,13 +47,45 @@
                         }
                     });
                 console.log(i + ': logging ' + cik);
-            }).catch(() => console.log(i + ': ' + cik + ' not found'))
+                resolve();
+            }).catch(() => {resolve(); console.log(i + ': ' + cik + ' not found')})
     })));
 
     output = output.sort((a, b) => b['eps'] - a['eps']);
-    output = output.slice(0, 30);
+    output = output.slice(0, 60);
 
     require('fs').writeFile('./resource/earnings.json', JSON.stringify(output, null, 4),
         e => console.log(e))
 
-})();
+}
+
+async function finnhub() {
+    const finn = require('finnhub');
+    const fs = require('fs/promises');
+
+    const api_key = finn.ApiClient.instance.authentications['api_key'];
+    api_key.apiKey = await fs.readFile('./secret/apikey.txt', 'utf8');
+    const finnhubClient = new finn.DefaultApi();
+    let output = JSON.parse(await fs.readFile('./resource/earnings.json', 'utf8'));
+
+    await Promise.allSettled(output.map((element, i) => new Promise(async resolve => {
+        await new Promise(resolve => setTimeout(resolve, i * 1001));
+        finnhubClient.quote(element['ticker'], (error, data) => {
+            if(error) {console.log(error); resolve()}
+            else {
+                element['price'] = data['c']
+                element['pe'] = element['price'] / element['eps'];
+                console.log('logging ' + element['ticker'] + ': ' + element['pe']);
+                resolve();
+            }
+        });
+    })));
+
+    await fs.writeFile('./resource/pe.json', JSON.stringify(output, null, 4))
+}
+
+if (process.argv[2] === 'edgar')
+    edgar();
+
+if (process.argv[2] === 'finnhub')
+    finnhub();
