@@ -1,0 +1,182 @@
+[
+    {
+        "cik": "CIK0000906163",
+        "ticker": "NVR",
+        "year": "2021",
+        "eps": 345.37
+    },
+    {
+        "cik": "CIK0001096343",
+        "ticker": "MKL",
+        "year": "2021",
+        "eps": 176.92
+    },
+    {
+        "cik": "CIK0000012208",
+        "ticker": "BIO-B",
+        "year": "2021",
+        "eps": 142.33
+    },
+    {
+        "cik": "CIK0000866787",
+        "ticker": "AZO",
+        "year": "2022",
+        "eps": 120.83
+    },
+    {
+        "cik": "CIK0000866787",
+        "ticker": "AZO",
+        "year": "2021",
+        "eps": 97.6
+    },
+    {
+        "cik": "CIK0000357294",
+        "ticker": "HOVVB",
+        "year": "2021",
+        "eps": 87.5
+    },
+    {
+        "cik": "CIK0000775368",
+        "ticker": "Y",
+        "year": "2021",
+        "eps": 74.7
+    },
+    {
+        "cik": "CIK0000104889",
+        "ticker": "GHC",
+        "year": "2021",
+        "eps": 70.65
+    },
+    {
+        "cik": "CIK0000886982",
+        "ticker": "GSCE",
+        "year": "2021",
+        "eps": 60.25
+    },
+    {
+        "cik": "CIK0000711404",
+        "ticker": "COO",
+        "year": "2021",
+        "eps": 59.8
+    },
+    {
+        "cik": "CIK0001632127",
+        "ticker": "CABO",
+        "year": "2021",
+        "eps": 48.49
+    },
+    {
+        "cik": "CIK0001133421",
+        "ticker": "NOC",
+        "year": "2021",
+        "eps": 43.7
+    },
+    {
+        "cik": "CIK0000028917",
+        "ticker": "DDT",
+        "year": "2021",
+        "eps": 41.88
+    },
+    {
+        "cik": "CIK0000028917",
+        "ticker": "DDT",
+        "year": "2021",
+        "eps": 41.88
+    },
+    {
+        "cik": "CIK0001364742",
+        "ticker": "BLK",
+        "year": "2021",
+        "eps": 38.76
+    },
+    {
+        "cik": "CIK0001043000",
+        "ticker": "SNDA",
+        "year": "2021",
+        "eps": 38.24
+    },
+    {
+        "cik": "CIK0001023128",
+        "ticker": "LAD",
+        "year": "2021",
+        "eps": 36.81
+    },
+    {
+        "cik": "CIK0001811074",
+        "ticker": "TPL",
+        "year": "2021",
+        "eps": 34.83
+    },
+    {
+        "cik": "CIK0001095073",
+        "ticker": "RE",
+        "year": "2021",
+        "eps": 34.66
+    },
+    {
+        "cik": "CIK0001822993",
+        "ticker": "JXN",
+        "year": "2021",
+        "eps": 33.86
+    },
+    {
+        "cik": "CIK0001037646",
+        "ticker": "MTD",
+        "year": "2021",
+        "eps": 33.25
+    },
+    {
+        "cik": "CIK0001528849",
+        "ticker": "RH",
+        "year": "2021",
+        "eps": 32.37
+    },
+    {
+        "cik": "CIK0001301787",
+        "ticker": "BXC",
+        "year": "2021",
+        "eps": 30.8
+    },
+    {
+        "cik": "CIK0001031203",
+        "ticker": "GPI",
+        "year": "2021",
+        "eps": 30.22
+    },
+    {
+        "cik": "CIK0000106640",
+        "ticker": "WHR",
+        "year": "2021",
+        "eps": 28.73
+    },
+    {
+        "cik": "CIK0000927628",
+        "ticker": "COF-PN",
+        "year": "2021",
+        "eps": 27.04
+    },
+    {
+        "cik": "CIK0001144980",
+        "ticker": "ABG",
+        "year": "2021",
+        "eps": 26.75
+    },
+    {
+        "cik": "CIK0000003499",
+        "ticker": "ALX",
+        "year": "2021",
+        "eps": 25.94
+    },
+    {
+        "cik": "CIK0001156039",
+        "ticker": "ELV",
+        "year": "2021",
+        "eps": 25.04
+    },
+    {
+        "cik": "CIK0000920148",
+        "ticker": "LH",
+        "year": "2021",
+        "eps": 24.6
+    }
+]

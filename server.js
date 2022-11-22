@@ -4,11 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const path = require('path');
 const favicon = require('serve-favicon')
-const evaluator = require('./evaluator.js')
 const server = express();
-
-process.removeAllListeners('SIGUSR1');
-process.on('SIGUSR1', evaluator);
 
 if (process.env.NODE_ENV !== 'dev') {
     server.use(function (req, res, next) {
