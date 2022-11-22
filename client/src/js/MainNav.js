@@ -17,9 +17,14 @@ function MainNav() {
                         <LinkContainer to="/">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <NavDropdown title="Data" id="basic-nav-dropdown">
+                        <NavDropdown title="Data" >
                             <LinkContainer to="/stonks">
                                 <NavDropdown.Item>Stonks</NavDropdown.Item>
+                            </LinkContainer>
+                        </NavDropdown>
+                        <NavDropdown title="Games">
+                            <LinkContainer to="/swordgame">
+                                <NavDropdown.Item>SwordGame</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                     </Nav>

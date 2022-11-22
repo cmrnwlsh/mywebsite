@@ -1,0 +1,16 @@
+.Container {
+    width: 40em;
+    margin-top: 5vh;
+}
+
+.Col {
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.Col:hover {
+    background-color: midnightblue;
+}

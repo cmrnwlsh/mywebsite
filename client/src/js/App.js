@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import Stonks from "./Stonks";
 import NotFound from "./NotFound";
+import SwordGame from "./Games/SwordGame/SwordGame.js"
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/stonks"} element={<Stonks/>}/>
+                <Route path={"/swordgame"} element={<SwordGame/>}/>
                 <Route path={"*"} element={<NotFound/>}/>
             </Routes>
         </BrowserRouter>
