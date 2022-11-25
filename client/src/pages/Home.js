@@ -1,4 +1,3 @@
-import logo from "../resource/logo.svg";
 import MainNav from "./MainNav";
 
 function Home() {
@@ -6,7 +5,9 @@ function Home() {
         <>
             <MainNav/>
             <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
+                <h3><a href={'https://github.com/cmrnwlsh/mywebsite'}>
+                    https://github.com/cmrnwlsh/mywebsite
+                </a></h3>
                 <p>
                     <code>I write code and stuff</code>
                 </p>
