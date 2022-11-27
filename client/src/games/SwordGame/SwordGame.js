@@ -9,44 +9,58 @@ import Container from "react-bootstrap/Container";
 function Game() {
     const p = useRef(new Player(12, 12));
     const state = useRef(maps.baseMap(p.current));
+    const screen = useRef('game')
     const [view, update] = useState(views.base(state.current));
 
-    function keyHandler(event) {
-        if (event.key === 'ArrowUp' && p.current.y > 0) {
+    const mapKeys = event => {
+        if (event.key === 'ArrowUp' && p.current.y > 0)
             p.current.move(state.current, [p.current.x, p.current.y - 1]);
-            update(views.base(state.current));
-        }
 
-        if (event.key === 'ArrowDown' && p.current.y < state.current.length - 1) {
+        if (event.key === 'ArrowDown' && p.current.y < state.current.length - 1)
             p.current.move(state.current, [p.current.x, p.current.y + 1]);
-            update(views.base(state.current));
-        }
 
-        if (event.key === 'ArrowLeft' && p.current.x > 0) {
+        if (event.key === 'ArrowLeft' && p.current.x > 0)
             p.current.move(state.current, [p.current.x - 1, p.current.y]);
-            update(views.base(state.current));
-        }
 
-        if (event.key === 'ArrowRight' && p.current.x < state.current[0].length - 1) {
+        if (event.key === 'ArrowRight' && p.current.x < state.current[0].length - 1)
             p.current.move(state.current, [p.current.x + 1, p.current.y]);
-            update(views.base(state.current));
-        }
 
-        if (event.key === ' ')
-            p.current.pickup(state.current, 0);
+        if (event.key === ' ') p.current.pickup(state.current, 0);
 
-        if (event.key === '.')
-            console.log(state.current[p.current.y][p.current.x]);
+        if (event.key === '.') console.log(state.current[p.current.y][p.current.x]);
+
+        if (event.key === 'i') {
+            screen.current = 'inventory';
+            update(views.inv(p.current));
+        } else update(views.base(state.current));
     }
 
+    const invKeys = event => {
+        if (event.key === 'd' && p.current.inventory.length > 0)
+            p.current.drop(state.current,0);
+
+        if (event.key === 'i') {
+            screen.current = 'game';
+            update(views.base(state.current));
+        } else update(views.inv(p.current));
+    }
+
+    const dropKeys = event => {
+
+    }
+
+    const keys = {'game': mapKeys, 'inventory': invKeys, 'drop': dropKeys};
+
     return (
-        <Container className={'SwordGame square border'} onKeyDown={keyHandler} tabIndex={0}>
+        <Container className={'SwordGame square border'}
+                   onKeyDown={keys[screen.current]}
+                   tabIndex={0}>
             {view}
         </Container>)
 }
 
 export default function SwordGame() {
-    return(
+    return (
         <>
             <MainNav/>
             <Game/>

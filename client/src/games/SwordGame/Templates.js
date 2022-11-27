@@ -15,7 +15,13 @@ export class Player {
     }
 
     pickup(state, index) {
-        this.inventory.push(state[this.y][this.x].popItem(index));
+        if(state[this.y][this.x].contents.length > 1)
+            this.inventory.push(state[this.y][this.x].popItem(index));
+    }
+
+    drop(state, index) {
+        if(this.inventory.length > index)
+            state[this.y][this.x].contents.unshift(this.popItem(index));
     }
 
     popItem(item) {
@@ -63,6 +69,7 @@ export class Floor {
 class Weapon {
     constructor() {
         this.damage = {bronze: 1, iron: 2, steel: 3};
+        this.symbol = '/';
     }
 }
 
@@ -72,6 +79,9 @@ export class Sword extends Weapon {
         this.type = 'sword';
         this.material = material;
         this.damage = this.damage[material] * 2;
-        this.symbol = '/';
+    }
+
+    toString() {
+        return ('Sword | ' + 'Damage: ' + this.damage + ', ' + 'Material: ' + this.material)
     }
 }
