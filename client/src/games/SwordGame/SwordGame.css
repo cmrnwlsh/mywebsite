@@ -1,13 +1,8 @@
-.GameTabs {
+.SwordGame {
     background-color: black;
     margin-top:5vh;
     width: 60em;
     height: 50em;
-}
-
-.SwordGame {
-    width: 40em;
-    margin-top: 5vh;
 }
 
 .Tile {
@@ -16,4 +11,13 @@
     margin-right: 0px;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.Map {
+    width: 40em;
+    padding-top: 5vh;
+}
+
+.Inventory {
+
 }
