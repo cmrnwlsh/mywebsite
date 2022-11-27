@@ -4,6 +4,7 @@ export class Player {
         this.x = x;
         this.y = y;
         this.inventory = [];
+        this.equipment = {hands: {}}
         this.symbol = '@'
     }
 
@@ -64,7 +65,6 @@ export class Floor {
         }
     };
 }
-
 
 class Weapon {
     constructor() {

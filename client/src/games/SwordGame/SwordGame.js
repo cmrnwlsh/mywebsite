@@ -8,8 +8,7 @@ import Container from "react-bootstrap/Container";
 
 function Game() {
     const p = useRef(new Player(12, 12));
-    const state = useRef(maps.baseMap(p.current));
-    const screen = useRef('game')
+    const [state, screen] = [useRef(maps.baseMap(p.current)), useRef('game')];
     const [view, update] = useState(views.base(state.current));
 
     const mapKeys = event => {
@@ -36,17 +35,31 @@ function Game() {
     }
 
     const invKeys = event => {
-        if (event.key === 'd' && p.current.inventory.length > 0)
-            p.current.drop(state.current,0);
+        if (event.key === 'd' && p.current.inventory.length > 0) {
+            screen.current = 'drop';
+            update(views.drop(p.current));
+        }
 
         if (event.key === 'i') {
             screen.current = 'game';
             update(views.base(state.current));
-        } else update(views.inv(p.current));
+        }
     }
 
     const dropKeys = event => {
-
+        if (event.key <= p.current.inventory.length &&
+            event.key > 0) {
+            p.current.drop(state.current, event.key - 1)
+            update(views.drop(p.current))
+        }
+        if (event.key === 'd') {
+            screen.current = 'inventory';
+            update(views.inv(p.current))
+        }
+        if (event.key === 'i') {
+            screen.current = 'game';
+            update(views.base(state.current));
+        }
     }
 
     const keys = {'game': mapKeys, 'inventory': invKeys, 'drop': dropKeys};
