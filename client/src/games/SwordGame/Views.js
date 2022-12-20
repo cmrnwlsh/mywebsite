@@ -31,7 +31,8 @@ export const message = message => {
 }
 
 export const controls =
-    ['Movement: arrow keys', 'Pickup: space', 'Inventory: i']
+    ['Movement: arrow keys ----- Pickup: space',
+        'Inventory: i ------------- Equipment: e']
         .map(line => message(line));
 
 export const invControls =

@@ -1,11 +1,24 @@
+export class Character {
+    constructor(label=this.constructor.name, symbol='') {
+        this.label = label;
+        this.health = 100;
+        this.inventory = []
+        this.equipment = {};
+        this.symbol = symbol;
+    }
 
-export class Player {
+    toString() {
+        return this.label;
+    }
+}
+
+export class Player extends Character{
     constructor(x, y) {
+        super();
         this.x = x;
         this.y = y;
-        this.inventory = [];
-        this.equipment = {hands: {}}
-        this.symbol = '@'
+        this.equipment = {LHand: {}, RHand: {}};
+        this.symbol = '@';
     }
 
     move(state, coords) {
@@ -23,6 +36,10 @@ export class Player {
     drop(state, index) {
         if(this.inventory.length > index)
             state[this.y][this.x].contents.unshift(this.popItem(index));
+    }
+
+    equip() {
+
     }
 
     popItem(item) {

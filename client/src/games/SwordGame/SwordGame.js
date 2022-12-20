@@ -1,12 +1,20 @@
 import MainNav from "../../pages/MainNav";
 import './SwordGame.css'
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Player} from "./Templates";
 import * as maps from "./Maps";
 import * as views from "./Views";
 import Container from "react-bootstrap/Container";
 
 function Game() {
+    useEffect(() => {
+        window.addEventListener("keydown", function(e) {
+            if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+    }, []);
+
     const p = useRef(new Player(12, 12));
     const [state, screen] = [useRef(maps.baseMap(p.current)), useRef('game')];
     const [view, update] = useState(views.base(state.current));

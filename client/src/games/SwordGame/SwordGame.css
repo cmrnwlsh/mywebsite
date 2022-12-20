@@ -1,8 +1,9 @@
 .SwordGame {
     background-color: black;
     margin-top:5vh;
+    margin-bottom:5vh;
     width: 60em;
-    height: 50em;
+    height: 45em;
 }
 
 .Tile {
